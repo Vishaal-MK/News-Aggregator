@@ -97,6 +97,11 @@ We have added a new search functionality to enhance the user experience. Users c
 - Use the buttons to copy the article URL, report an article, or share on social media.
 - Use the search bar to search for specific headlines or keywords
 
+### Screenshots
+![](https://github.com/Vishaal-MK/News-Aggregator/blob/aggregator-search/screenshots/breaking_light_mode.PNG)
+![](https://github.com/Vishaal-MK/News-Aggregator/blob/aggregator-search/screenshots/sports_light_mode.PNG)
+![](https://github.com/Vishaal-MK/News-Aggregator/blob/aggregator-search/screenshots/sports_search_mode.PNG)
+
 ## Building and Deploying as a Container
 
 ### Building the Docker Image
