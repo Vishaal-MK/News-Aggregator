@@ -1,65 +1,118 @@
-</p>
-<h1 align = 'center'>News Aggregator</h1>
-<br>
+# News Aggregator Application
 
-<br>
+## Table of Contents
 
-[![](https://img.shields.io/badge/Made_with-Python3-blue?style=for-the-badge&logo=python)](https://www.python.org "Python3")[![](https://img.shields.io/badge/Made_with-Django-blue?style=for-the-badge&logo=django)](https://www.djangoproject.com/ "Django")
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [New Search Feature](#new-search-feature)
+4. [Installation](#installation)
+5. [Usage](#usage)
+6. [Building and Deploying as a Container](#building-and-deploying-as-a-container)
 
-</p>
+## Introduction
 
-## Description
-
-News aggregator is a Django project to scrape a news website using Beautiful soup and request module and hence combination of web crawlers and web applications.
-Both of these technologies have their implementation in Python.
+The News Aggregator Application is a Django-based web application that collects and displays news articles from various sources. Users can browse the latest news, filter by category, and share articles on social media.
 
 ## Features
 
-Our news aggregator works in 3 steps:<br>
-1.It scrapes the news website for the articles.In this Django project, we are scraping a website 'www.theonion.com'<br>
-2.Then it stores the article’s images, links, and title.<br>
-3.The stored objects in the database are served to the client. The client gets information in a nice template by clicking the 'Load news' button and select the different options available to you.The options are: Latest,Entertainment,Sports,Politics,Opinion,Breaking-News<br>
+- Aggregates news from multiple sources
+- Displays news articles with images and titles
+- Category filtering
+- Share articles on social media
+- Copy article URL to clipboard
+- Report article functionality
+- Dark mode toggle
 
-## Added Feature
+## New Search Feature
 
-As part of the assignment I have implemented a simple search function
+We have added a new search functionality to enhance the user experience. Users can now search for news articles directly from the homepage.
 
-        ----------------------------------------------------------------------------------------
-### Screenshots ###
-## Latest
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/latest_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/latest_night_mode.PNG)
-## Entertainment
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/entertainment_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/entertainment_night_mode.PNG)
----------------------------------------------------------------------------------------
+### How to Use the Search Feature
 
-## How To Use
+1. On the homepage, locate the search bar at the top right corner of the navigation bar.
+2. Enter your search query and press the "Search" button.
+3. The search results will be displayed showing articles that match your search criteria.
 
-#### Software Requirements
+### Code Implementation
 
-Python3
+1. **View**:
+   In `views.py`, modify the home view function to handle the search logic:
+   ```python
 
-#### Installation
+   def news_list(request):
+    query = request.GET.get('query', '')
 
-Install the dependencies by running:
-```html  
-pip install bs4
-pip install requests
-pip install django-social-share
+    if query:
+        headlines = Headline.objects.filter(title__icontains=query)
+    else:
+        headlines = Headline.objects.all()[::-1]
+    context = {
+        "object_list": headlines,
+    }
+    return render(request, "news/home.html", context)
+   ```
+
+2. **Template**:
+   Ensure the search form is included in `home.html` template:
+   ```html
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Search</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0" action="{% url 'home' %}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+   ```
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Vishaal-MK/News-Aggregator/tree/aggregator-search
+   cd News-Aggregator/News-Aggregator
+   ```
+
+2. Create a virtual environment and install dependencies:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   pip install -r requirements.txt
+   ```
+
+3. Run migrations:
+   ```bash
+   python manage.py migrate
+   ```
+
+4. Start the development server:
+   ```bash
+   python manage.py runserver
+   ```
+## Usage
+
+- Visit `http://127.0.0.1:8000` to access the application.
+- Use the dropdown menu to load news by category.
+- Use the buttons to copy the article URL, report an article, or share on social media.
+- Use the search bar to search for specific headlines or keywords
+
+## Building and Deploying as a Container
+
+### Building the Docker Image
+
+To build the Docker image, run the following command in the root directory of your project (where the `Dockerfile` is located):
+
+```bash
+docker build -t news-aggregator .
 ```
 
-#### Run using Command Prompt
+### Running the Docker Container
 
-Navigate to the News-Aggregator folder which has manage.py file then run the following command on cmd
+To run the Docker container, use the following command:
 
-```html
-python manage.py runserver
+```bash
+docker run -d -p 8000:8000 news-aggregator
 ```
 
-### Tech stack
-
-`Backend` : Python3,Beautiful soup <br>
-`Framework` : Django <br>
-`Database` : Sqlite3 <br>
-`Frontend` : Html,CSS,Bootstrap <br>
+### Deploying to AWS Lambda
