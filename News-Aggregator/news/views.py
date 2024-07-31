@@ -1,8 +1,9 @@
-from django.shortcuts import render
 import requests
-from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup as BSoup
+from django.shortcuts import render, redirect
+
 from news.models import Headline
+from news.forms import SearchForm
 
 # Create your views here.
 
@@ -42,3 +43,16 @@ def news_list(request):
         "object_list": headlines,
     }
     return render(request, "news/home.html", context)
+
+def search(request):
+    form = SearchForm()
+    query = None
+    results = []
+    
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Headline.objects.filter(title__icontains=query)
+    
+    return render(request, 'news/search.html', {'form': form, 'query': query, 'results': results})

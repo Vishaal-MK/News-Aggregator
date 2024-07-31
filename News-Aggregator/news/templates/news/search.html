@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Articles</title>
+</head>
+<body>
+    <h1>Search Articles</h1>
+    <form method="get" action="{% url 'search' %}">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
+        <h2>Results for "{{ query }}":</h2>
+        <ul>
+            {% for article in results %}
+                <li>
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.content|truncatewords:30 }}</p>
+                    <p><em>Source: {{ article.source }}</em></p>
+                    <p><em>Published: {{ article.publication_date }}</em></p>
+                </li>
+            {% empty %}
+                <li>No results found.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
