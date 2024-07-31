@@ -100,7 +100,7 @@ We have added a new search functionality to enhance the user experience. Users c
 ### Screenshots
 ![](https://github.com/Vishaal-MK/News-Aggregator/blob/aggregator-search/screenshots/breaking_light_mode.PNG)
 ![](https://github.com/Vishaal-MK/News-Aggregator/blob/aggregator-search/screenshots/sports_light_mode.PNG)
-![](https://github.com/Vishaal-MK/News-Aggregator/blob/aggregator-search/screenshots/sports_search_mode.PNG)
+![](https://github.com/Vishaal-MK/News-Aggregator/blob/aggregator-search/screenshots/sports_search_mode.png)
 
 ## Building and Deploying as a Container
 
