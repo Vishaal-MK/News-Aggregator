@@ -48,16 +48,3 @@ def news_list(request):
         "object_list": headlines,
     }
     return render(request, "news/home.html", context)
-
-def search(request):
-    form = SearchForm()
-    query = None
-    results = []
-    
-    if 'query' in request.GET:
-        form = SearchForm(request.GET)
-        if form.is_valid():
-            query = form.cleaned_data['query']
-            results = Headline.objects.filter(title__icontains=query)
-    
-    return render(request, 'news/search.html', {'form': form, 'query': query, 'results': results})

@@ -1,6 +1,3 @@
-## Website Live Link
-https://news-aggregator-ku26.onrender.com/
-
 </p>
 <h1 align = 'center'>News Aggregator</h1>
 <br>
@@ -20,9 +17,12 @@ Both of these technologies have their implementation in Python.
 
 Our news aggregator works in 3 steps:<br>
 1.It scrapes the news website for the articles.In this Django project, we are scraping a website 'www.theonion.com'<br>
-(We have scraped news articles from 'latest' section of 'www.theonion.com' for demonstration)<br>
 2.Then it stores the article’s images, links, and title.<br>
 3.The stored objects in the database are served to the client. The client gets information in a nice template by clicking the 'Load news' button and select the different options available to you.The options are: Latest,Entertainment,Sports,Politics,Opinion,Breaking-News<br>
+
+## Added Feature
+
+As part of the assignment I have implemented a simple search function
 
         ----------------------------------------------------------------------------------------
 ### Screenshots ###
@@ -32,26 +32,6 @@ Our news aggregator works in 3 steps:<br>
 ## Entertainment
 ![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/entertainment_light_mode.PNG)
 ![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/entertainment_night_mode.PNG)
-## Sports
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/sports_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/sports_night_mode.PNG)
-## Politics
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/polititcs_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/polititcs_night_mode.PNG)
-## Breaking News
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/breaking_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/breaking_night_mode.PNG)
-## Opinion News
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/opinion_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/opinion_night_mode.PNG)
-## Facebook share
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/facebook_share.PNG)
-## Whatsapp share
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/whatsapp_share.PNG)
-## Telegram share
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/telegram_share.PNG)
-## Copy to clipboard
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/copy_to_clipboard.PNG)
 ---------------------------------------------------------------------------------------
 
 ## How To Use
@@ -64,9 +44,9 @@ Python3
 
 Install the dependencies by running:
 ```html  
-    pip install bs4
-    pip install requests
-    pip install django-social-share
+pip install bs4
+pip install requests
+pip install django-social-share
 ```
 
 #### Run using Command Prompt
