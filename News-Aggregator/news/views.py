@@ -38,7 +38,12 @@ def scrape(request, name):
 
 
 def news_list(request):
-    headlines = Headline.objects.all()[::-1]
+    query = request.GET.get('query', '')
+
+    if query:
+        headlines = Headline.objects.filter(title__icontains=query)
+    else:
+        headlines = Headline.objects.all()[::-1]
     context = {
         "object_list": headlines,
     }
